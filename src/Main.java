@@ -40,8 +40,12 @@ public class Main {
           continue;
         }
         productCount = Integer.parseInt(input[1]);
-        if (productCount <= 0) {
+        if (productCount < 0 && (productCount * -1) > amountOfProductsInBasket[productNumber - 1]) {
           System.out.println("Ошибка! Количество товара для покупки должно быть больше 0.");
+          continue;
+        }
+        if (productCount == 0) {
+          amountOfProductsInBasket[productNumber - 1] = 0;
           continue;
         }
         amountOfProductsInBasket[productNumber - 1] += productCount;
