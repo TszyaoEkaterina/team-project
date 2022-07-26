@@ -7,6 +7,8 @@ public class Main {
     String[] products = {"Яблоко", "Помидор", "Апельсин", "Груша"};
     int[] prices = {30, 50, 70, 40};
     int sumProducts = 0;
+    int discount = 0;
+    String saleinformation = "";
 
     Scanner scanner = new Scanner(System.in);
     int[] amountOfProductsInBasket = new int[products.length];
@@ -54,6 +56,11 @@ public class Main {
     for (int i = 0; i < products.length; i++) {
       if (amountOfProductsInBasket[i] != 0) {
         sumProducts = sumProducts + (prices[i] * amountOfProductsInBasket[i]);
+        if (amountOfProductsInBasket[i] >= 3) {
+          discount = prices[i] * (amountOfProductsInBasket[i] / 3);
+          saleinformation = "Акция 3 по цене 2! ";
+          sumProducts -= discount;
+        }
         System.out.println(
             products[i]
                 + " "
@@ -61,7 +68,8 @@ public class Main {
                 + " шт. "
                 + prices[i]
                 + " руб/шт. "
-                + (amountOfProductsInBasket[i] * prices[i])
+                + saleinformation
+                + (amountOfProductsInBasket[i] * prices[i] - discount)
                 + " рублей в сумме");
       }
     }
